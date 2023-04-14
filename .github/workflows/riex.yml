@@ -1,6 +1,15 @@
 name: Testing riex action
 on:
   workflow_dispatch:
+    inputs:
+      days_left:
+        description: "Days left to expire"
+        required: true
+        default: "1"
+      dummy_end_time:
+        description: "Dummy end time"
+        required: true
+        default: "2023-04-15T02:50:00+09:00"
 jobs:
   testing:
     runs-on: ubuntu-latest
@@ -11,7 +20,7 @@ jobs:
       - name: Check RI expiration and create an issue if necessary
         uses: fujiwara/riex@main
         with:
-          days_left: 1
-          dummy_end_time: "2023-04-15T02:50:00+09:00"
+          days_left: ${{ github.event.inputs.days_left }}
+          dummy_end_time: ${{ github.event.inputs.dummy_end_time }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
