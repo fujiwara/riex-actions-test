@@ -12,6 +12,6 @@ jobs:
         uses: fujiwara/riex@main
         with:
           days_left: 1
-          dummy_end_time: "2023-04-15T02:35:00+09:00"
+          dummy_end_time: "2023-04-15T02:50:00+09:00"
         env:
           GITHUB_TOKEN: ${{ github.token }}
