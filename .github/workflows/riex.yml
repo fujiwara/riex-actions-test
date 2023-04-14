@@ -1,0 +1,17 @@
+name: Testing riex action
+on:
+  workflow_dispatch:
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Check RI expiration and create an issue if necessary
+        uses: fujiwara/riex@main
+        with:
+          days_left: 1
+          dummy_end_time: "2023-04-15T02:30:00+09:00"
+          version: v0.0.5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
